@@ -19,6 +19,9 @@ if (!empty($_POST['ingresar_estudiante'])){
   unset($columnas[0]);
   unset($columnas[1]);
   $info = $modelo_estudiantes->traer_datos();
+  // echo "<pre>";
+  // print_r($info_promotor);
+  // echo "</pre>";
   ?>
 
   <table class="display" id="tabla1">

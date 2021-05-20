@@ -6,20 +6,19 @@
   $cursos = new Modelo_cursos();
   $info = $cursos-> informacion_tabla();
   // echo "<pre>";
-  // print_r($info_cursos);
+  // print_r($info);
   // echo "</pre>";
 ?>
 
-<table class="display" id="tabla2">
+<table class="display" id="tabla-cursos">
 <thead>
   <tr>
     <th scope='col'>ID</th>
     <th scope='col'>PROFESOR</th>
     <th scope='col'>NOMBRE</th>
     <th scope='col'>MATERIAL</th>
-    <th scope='col'>info</th>
+    <th scope='col'>Borrar</th>
     <th scope='col'>actu</th>
-    <th></th>
   </tr>
 
 </thead>
@@ -29,25 +28,21 @@
     if ($info != null) {
       for ($x=0; $x < sizeof($info); $x++) {
           echo  "<tr>";
-          $n = 0;
           foreach ($info[$x] as $key => $dato) {
-                    if($n < 6 ){
-                    echo"<td>".$dato."</td>";
-                  $n++;
-                } else if($n < 7){
-                        $n++;
-                        echo"<td>"."<button class='info_complete btn-outline-success' type='button' name='button_info'>".'Informacion'."</button>"."</td>";
-                    }else if($n == 7){
-                        $n++;
-                        echo"<td>"."<button class='actualizar-estudiantes btn-outline-success' type='button' name='button_actualizar'>".'Actualizar'."</button>"."</td>";
-                    }
-                }
-            echo "</tr>";
-    }
+            echo"<td>".$dato."</td>";
+          }
+          echo"<td><button class='borrar_curso btn-outline-success' type='button' name='button_borrar'>Borrar</button></td>";
+          echo"<td>"."<button class='actualizar-estudiantes btn-outline-success' type='button' name='button_actualizar'>".'Actualizar'."</button>"."</td>";
+          echo "</tr>";
+      }
 
-            }?>
+    }?>
 </tbody>
 </table>
+
+<div class="resultado-borrar">
+
+</div>
 
 <div class="crudd">
   <button class="btn btn-outline-success" type="button" name="button">

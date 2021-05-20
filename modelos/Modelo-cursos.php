@@ -21,9 +21,16 @@ class Modelo_cursos
           "SELECT lb_cursos.IdCurso, lb_profesores.Nombre, lb_cursos.Nombre AS NombreCurso,
            lb_libros.Nombre AS NombreLibro
             FROM lb_libros INNER JOIN lb_cursos INNER JOIN lb_profesores
-            WHERE lb_cursos.IdCurso = lb_libros.IdCurso AND lb_profesores.IdProfesor = lb_cursos.IdProfesor",
+            WHERE lb_cursos.IdLibro = lb_libros.IdLibro AND lb_profesores.IdProfesor = lb_cursos.IdProfesor",
            'ARRAY_A'
          );
     return (isset($informacion[0])) ? $informacion : null;
+  }
+
+  public function eliminar_dato($dato){
+    $this->wpdb->delete(
+      $this->nombre_tabla, # TABLA
+      array('IdCurso' => $dato) # DATOS
+    );
   }
 }

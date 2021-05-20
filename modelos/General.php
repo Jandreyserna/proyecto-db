@@ -52,6 +52,10 @@ public function traer_datos(){
     );
   }
 
+
+
+
+
   // public function update_estudent($datos, $id){
   //   $this->wpdb->show_errors(false);
   //     $this->wpdb->update(
