@@ -10,6 +10,8 @@ License: private
 require_once dirname(__FILE__) . '/modelos/General.php';
 require_once dirname(__FILE__) . '/modelos/Modelo-promotor.php';
 require_once dirname(__FILE__) . '/modelos/Modelo-cursos.php';
+require_once dirname(__FILE__) . '/modelos/Modelo-libros.php';
+require_once dirname(__FILE__) . '/modelos/Modelo-profesor.php';
 require_once dirname(__FILE__) . '/funciones/funciones_post.php';
 require_once dirname(__FILE__) . '/funciones/functions.php';
 require_once dirname(__FILE__) . '/funciones/functions_ajax.php';
@@ -51,5 +53,6 @@ function lbr_admin_curso(){
 }
 
 function vista_cursos(){
+  $modelo_cursos = new Modelo_general('lb_cursos');
   require_once dirname(__FILE__) . '/vistas/cursos.php';
 }

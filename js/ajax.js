@@ -47,7 +47,7 @@ console.log('ready');
 	 	 //-------BOTON2 DE borrar_curso COMPLETA CON AJAX------//
 	 	 //--------------------------------------------//
 
-			$("#tabla-cursos").on("click", ".borrar_curso", function(){
+			$("#tabla-cursos").on("click", ".borrar-curso", function(){
 
 				 var padre = $(this).closest("tr");
 				 var id = $('.sorting_1', padre).text();
@@ -67,6 +67,30 @@ console.log('ready');
                     console.log('Todo ok.');
 										window.location.reload(true);
                     // jQuery('.resultado-borrar').html(result);
+                }
+				    });
+      });
+
+			$("#tabla-cursos").on("click", ".info-curso", function(){
+
+				 var padre = $(this).closest("tr");
+				 var id = $('.sorting_1', padre).text();
+
+				console.log(id);
+
+				jQuery.ajax({
+                type: "post",
+                url: ajax_var.url,
+
+                data: {
+                    'action' : 'event-list3',
+                    'nonce'  : ajax_var.nonce,
+									  'id'     : id
+                },
+                success: function(result){
+                    console.log('Todo ok.');
+										// window.location.reload(true);
+                     jQuery('.resultado-informacion').html(result);
                 }
 				    });
       });

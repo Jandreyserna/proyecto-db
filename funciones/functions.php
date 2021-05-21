@@ -47,3 +47,6 @@ add_action('wp_ajax_event-list', 'info_complete');
 
 add_action('wp_ajax_nopriv_event-list2', 'borrar_curso');
 add_action('wp_ajax_event-list2', 'borrar_curso');
+
+add_action('wp_ajax_nopriv_event-list3', 'informacion_curso');
+add_action('wp_ajax_event-list3', 'informacion_curso');

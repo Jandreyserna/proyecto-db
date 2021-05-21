@@ -5,6 +5,14 @@ function ingresar_estudiante(){
   unset($_POST['ingresar_estudiante']);
 
   $modelo = new Modelo_general('lb_estudiantes');
+  // print_r($_POST);
+  $modelo->insertar(array_filter($_POST));
+
+}
+
+function ingresar_curso(){
+
+  $modelo = new Modelo_general('lb_cursos');
   print_r($_POST);
   $modelo->insertar(array_filter($_POST));
 
