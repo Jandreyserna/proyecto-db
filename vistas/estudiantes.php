@@ -12,56 +12,53 @@ if (!empty($_POST['ingresar_estudiante'])){
 
   <?php
   $columnas = $modelo_estudiantes->columnas();
-  // $lugar = array_search('IdEstudiante', array_column($columnas, '0'));
-  // $lugar2 = array_search('Idpromotor', array_column($columnas, '1'));
   $promotor = new Modelo_promotor();
+  $tabla_estudiantes = new Modelo_estudiantes();
   $info_promotor = $promotor->id_nombre_promotor();
   unset($columnas[0]);
   unset($columnas[1]);
   $info = $modelo_estudiantes->traer_datos();
+  $info_estudiante = $tabla_estudiantes->id_nombre_estudiante();
   // echo "<pre>";
   // print_r($info_promotor);
   // echo "</pre>";
   ?>
 
-  <table class="display" id="tabla1">
+  <table class="display" id="tabla-estudiantes">
   <thead>
     <tr>
       <th scope='col'>ID</th>
       <th scope='col'>PROMOTOR</th>
       <th scope='col'>NOMBRES</th>
       <th scope='col'>APELLIDOS</th>
-      <th scope='col'>info</th>
-      <th scope='col'>actu</th>
-      <th></th>
+      <th scope='col'>Borrar</th>
+      <th scope='col'>Informacion</th>
     </tr>
 
   </thead>
   <tbody>
 
-      <?php
-      if ($info != null) {
-        for ($x=0; $x < sizeof($info); $x++) {
-            echo  "<tr>";
-            $n = 0;
-            foreach ($info[$x] as $key => $dato) {
-                      if($n < 6 ){
-                      echo"<td>".$dato."</td>";
-                    $n++;
-                  } else if($n < 7){
-                          $n++;
-                          echo"<td>"."<button class='info_complete btn-outline-success' type='button' name='button_info'>".'Informacion'."</button>"."</td>";
-                      }else if($n == 7){
-                          $n++;
-                          echo"<td>"."<button class='actualizar-estudiantes btn-outline-success' type='button' name='button_actualizar'>".'Actualizar'."</button>"."</td>";
-                      }
-                  }
-              echo "</tr>";
+    <?php
+    if ($info_estudiante != null) {
+      for ($x=0; $x < sizeof($info_estudiante); $x++) {
+          echo  "<tr>";
+          foreach ($info_estudiante[$x] as $key => $dato) {
+            echo"<td>".$dato."</td>";
+          }
+          echo"<td><button class='borrar-estudiante btn-outline-success' type='button' name='button_borrar'>Borrar</button></td>";
+          echo"<td>"."<button class='info-estudiante btn-outline-success' type='button' name='button_informacion'>".'Informaciòn'."</button>"."</td>";
+          echo "</tr>";
       }
 
-              }?>
+    }?>
+
+
   </tbody>
 </table>
+</div>
+
+<div class="ajax-student">
+
 </div>
 
 <div class="crudd">

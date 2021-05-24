@@ -8,6 +8,7 @@ License: private
 */
 
 require_once dirname(__FILE__) . '/modelos/General.php';
+require_once dirname(__FILE__) . '/modelos/Modelo-estudiantes.php';
 require_once dirname(__FILE__) . '/modelos/Modelo-promotor.php';
 require_once dirname(__FILE__) . '/modelos/Modelo-cursos.php';
 require_once dirname(__FILE__) . '/modelos/Modelo-libros.php';
@@ -48,11 +49,28 @@ function lbr_admin_curso(){
     'cursos',
     'vista_cursos',
     'dashicons-admin-page',
-    3
+    4
   );
 }
 
 function vista_cursos(){
   $modelo_cursos = new Modelo_general('lb_cursos');
   require_once dirname(__FILE__) . '/vistas/cursos.php';
+}
+
+function lbr_admin_eventos(){
+  add_menu_page(
+    'Eventos',
+    'Eventos',
+    'administrator',
+    'eventos',
+    'vista_eventos',
+    'dashicons-calendar-alt',
+    5
+  );
+}
+
+
+function vista_eventos(){
+  require_once dirname(__FILE__) . '/vistas/eventos.php';
 }

@@ -56,12 +56,12 @@ public function traer_datos(){
 
 
 
-  // public function update_estudent($datos, $id){
-  //   $this->wpdb->show_errors(false);
-  //     $this->wpdb->update(
-  //       $this->nombre_tabla, # TABLA
-  //       $datos, # DATOS
-  //       array('IdEstudiante' => $id)
-  //     );
-  // }
+  public function update($datos, $id){
+    $this->wpdb->show_errors(false);
+      $this->wpdb->update(
+        $this->nombre_tabla, # TABLA
+        $datos, # DATOS
+        array($id['name'] => $id['Id'])
+      );
+  }
 }

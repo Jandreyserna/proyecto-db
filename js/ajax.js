@@ -4,15 +4,15 @@ console.log('ready');
 //-------------tabla con ajax-----------------//
 //--------------------------------------------//
 
-		// var tabla = $('#tabla1').DataTable({
-		//  language: {
-		// 	 url:'../wp-content/plugins/pluglin-libreria/js/Spanish.json'
-		//  }
-	 // });
+		$('#tabla-estudiantes').DataTable({
+		 language: {
+			 url:'../wp-content/plugins/proyecto-db/js/Spanish.json'
+		 }
+	 });
 
 	 $('#tabla-cursos').DataTable({
 		language: {
-			url:'../wp-content/plugins/pluglin-libreria/js/Spanish.json'
+			url:'../wp-content/plugins/proyecto-db/js/Spanish.json'
 		}
 	});
 
@@ -20,7 +20,7 @@ console.log('ready');
 	 //-------BOTON DE INFO COMPLETA CON AJAX------//
 	 //--------------------------------------------//
 
-      $("#tabla1").on("click", ".info_complete", function(){
+      $("#tabla-estudiantes").on("click", ".borrar-estudiante", function(){
 
 				var padre = $(this).closest("tr");
 				var id = $('.sorting_1', padre).text();
@@ -38,7 +38,31 @@ console.log('ready');
                 },
                 success: function(result){
                     console.log('Todo ok.');
-                    jQuery('.contenedor-search').html(result);
+										window.location.reload(true);
+                    // jQuery('.ajax-student').html(result);
+                }
+				    });
+      });
+
+			$("#tabla-estudiantes").on("click", ".info-estudiante", function(){
+
+				 var padre = $(this).closest("tr");
+				 var id = $('.sorting_1', padre).text();
+
+				console.log(id);
+
+				jQuery.ajax({
+                type: "post",
+                url: ajax_var.url,
+
+                data: {
+                    'action' : 'informacion-completa',
+									  'id'     : id
+                },
+                success: function(result){
+                    console.log('Todo ok.');
+										// window.location.reload(true);
+                     jQuery('.ajax-student').html(result);
                 }
 				    });
       });
