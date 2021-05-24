@@ -36,10 +36,19 @@ function actualizar_curso(){
 function actualizar_estudiante(){
 
   $modelo = new Modelo_general('lb_estudiantes');
-  print_r($_POST);
   $id['Id'] = $_POST['actualizar_estudiante'];
   $id['name'] = 'IdEstudiante';
   unset($_POST['actualizar_estudiante']);
+  $modelo->update(array_filter($_POST), $id);
+
+}
+
+function actualizar_evento(){
+
+  $modelo = new Modelo_general('lb_eventos');
+  $id['Id'] = $_POST['actualizar_evento'];
+  $id['name'] = 'IdEvento';
+  unset($_POST['actualizar_evento']);
   $modelo->update(array_filter($_POST), $id);
 
 }

@@ -14,6 +14,7 @@ require_once dirname(__FILE__) . '/modelos/Modelo-cursos.php';
 require_once dirname(__FILE__) . '/modelos/Modelo-libros.php';
 require_once dirname(__FILE__) . '/modelos/Modelo-profesor.php';
 require_once dirname(__FILE__) . '/modelos/Modelo-eventos.php';
+require_once dirname(__FILE__) . '/modelos/Modelo-matricula.php';
 require_once dirname(__FILE__) . '/funciones/funciones_post.php';
 require_once dirname(__FILE__) . '/funciones/functions.php';
 require_once dirname(__FILE__) . '/funciones/functions_ajax.php';
@@ -23,6 +24,8 @@ function lbr_init() {
   add_action('admin_menu', 'lbr_admin_estudiante');
   add_action('admin_menu', 'lbr_admin_curso');
   add_action('admin_menu', 'lbr_admin_eventos');
+  add_action('admin_menu', 'lbr_admin_matricula');
+
 
 }
 
@@ -51,7 +54,7 @@ function lbr_admin_curso(){
     'cursos',
     'vista_cursos',
     'dashicons-admin-page',
-    4
+    3
   );
 }
 
@@ -68,11 +71,29 @@ function lbr_admin_eventos(){
     'eventos',
     'vista_eventos',
     'dashicons-calendar-alt',
-    5
+    4
   );
 }
 
 
 function vista_eventos(){
   require_once dirname(__FILE__) . '/vistas/eventos.php';
+}
+
+function lbr_admin_matricula(){
+  add_menu_page(
+    'Matriculas',
+    'Matriculas',
+    'administrator',
+    'matriculas',
+    'vista_matriculas',
+    'dashicons-welcome-learn-more',
+    4
+  );
+}
+
+
+function vista_matriculas(){
+  $modelo_estudiantes = new Modelo_general('lb_matriculados');
+  require_once dirname(__FILE__) . '/vistas/matriculas.php';
 }

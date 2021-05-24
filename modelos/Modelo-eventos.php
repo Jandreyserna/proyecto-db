@@ -35,7 +35,7 @@ class Modelo_eventos
 
   function libro_evento($id){
     $informacion = $this->wpdb->get_results(
-          "SELECT lb_libros.IdLibro,lb_libros.Nombre 
+          "SELECT lb_libros.IdLibro,lb_libros.Nombre
             FROM lb_eventos INNER JOIN lb_libros
             WHERE lb_eventos.IdEvento = $id
             AND lb_libros.IdLibro = lb_eventos.IdLibro ",

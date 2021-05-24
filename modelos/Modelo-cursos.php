@@ -68,6 +68,16 @@ class Modelo_cursos
     return (isset($informacion[0])) ? $informacion : null;
   }
 
+  function id_nombre_curso()
+  {
+    $informacion = $this->wpdb->get_results(
+          "SELECT lb_libros.IdCurso , lb_libros.Nombre
+            FROM lb_cursos",
+           'ARRAY_A'
+         );
+    return (isset($informacion[0])) ? $informacion : null;
+  }
+
   public function eliminar_dato($dato){
     $this->wpdb->delete(
       $this->nombre_tabla, # TABLA

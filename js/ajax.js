@@ -22,6 +22,12 @@ console.log('ready');
 	 	}
  	});
 
+		$('#tabla-matricula').DataTable({
+			language: {
+				url:'../wp-content/plugins/proyecto-db/js/Spanish.json'
+			}
+		});
+
 	 //--------------------------------------------//
 	 //-------BOTON DE INFO COMPLETA CON AJAX------//
 	 //--------------------------------------------//
@@ -176,4 +182,31 @@ $("#tabla-eventos").on("click", ".info-evento", function(){
 			});
 });
 
+});
+
+/////////////////////////////////////////////////////////////////
+///////////ajax de botones matriculas //////////////////////////
+///////////////////////////////////////////////////////////////
+
+$("#tabla-estudiantes").on("click", ".info-matricula", function(){
+
+	 var padre = $(this).closest("tr");
+	 var id = $('.sorting_1', padre).text();
+
+	console.log(id);
+
+	jQuery.ajax({
+					type: "post",
+					url: ajax_var.url,
+
+					data: {
+							'action' : 'informacion-completa',
+							'id'     : id
+					},
+					success: function(result){
+							console.log('Todo ok.');
+							// window.location.reload(true);
+							 jQuery('.ajax-student').html(result);
+					}
+			});
 });
