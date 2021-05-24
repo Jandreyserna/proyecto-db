@@ -53,3 +53,9 @@ add_action('wp_ajax_event-list3', 'informacion_curso');
 
 add_action('wp_ajax_nopriv_informacion-completa', 'informacion_estudiante');
 add_action('wp_ajax_informacion-completa', 'informacion_estudiante');
+
+add_action('wp_ajax_nopriv_eventos-borrar', 'borrar_evento');
+add_action('wp_ajax_eventos-borrar', 'borrar_evento');
+
+add_action('wp_ajax_nopriv_eventos-informar', 'informacion_evento');
+add_action('wp_ajax_eventos-informar', 'informacion_evento');

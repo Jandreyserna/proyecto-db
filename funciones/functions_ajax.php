@@ -241,3 +241,125 @@ function informacion_curso(){
     }
     wp_die();
 }
+
+#################################
+######Ajax para evento ###########
+#################################
+
+function borrar_evento(){
+  if (!empty($_POST['id'])){
+
+     $eliminar = new Modelo_eventos();
+     $eliminar->eliminar_dato($_POST['id']);
+
+   }
+   wp_die();
+
+}
+
+
+function informacion_evento(){
+  if (!empty($_POST['id'])){
+    $modelo = new Modelo_eventos();
+    $modelo_promotores = new Modelo_libro();
+    $promotor = $modelo->libro_evento($_POST['id']);
+    $promotores = $modelo_promotores->id_nombre_libro();
+    $informacion = $modelo->informacion_evento($_POST['id']);
+?>
+    <div class="titulo text-center">
+         <h2><?= $informacion[0]['Nombre'].' '.$informacion[0]['Apellido']; ?>
+       </h2>
+         <h3><?= $_POST['id']  ?></h3>
+   </div>
+   <ul>
+     <li>
+       <h5>Nombre Del Promotor: </h5>
+       <h6><?= $informacion[0]['nombre_promotor'].' '.$informacion[0]['apellido_promotor']  ?></h6>
+     </li>
+     <li>
+       <h5>Identificacion:</h5>
+       <h6><?= $informacion[0]['Identificcion']  ?></h6>
+     </li>
+     <li>
+       <h5>Ciudad:</h5>
+        <h6><?= $informacion[0]['Ciudad']  ?></h6>
+      </li>
+     <li>
+       <h5>Telefono:</h5>
+       <h6><?= $informacion[0]['Telefono']  ?></h6>
+      </li>
+     <li>
+       <h5>Correo:</h5>
+       <h6><?= $informacion[0]['Correo']  ?></h6>
+     </li>
+     <li>
+       <h5>Dirección:</h5>
+       <h6><?= $informacion[0]['Direccion']  ?></h6>
+     </li>
+   </ul>
+
+   <div class="crudd">
+     <button class="btn btn-outline-success" type="button" name="button">
+     <div class="container">
+       <a href="#update" class="btn-crudd btn-sucess" data-toggle="collapse">Actualizar Estudiante</a>
+     </div>
+   </button>
+   </div>
+
+   <div id="update" class="collapse">
+     <form action="" class="form-inline" method="post">
+       <input  type="hidden" name="actualizar_estudiante" value="<?= $_POST['id'] ?>"/>
+       <label for="campo1">Promotor </label>
+       <select class="promotor" name="IdPromotor" required>
+         <option value="<?= $promotor[0]['IdP'] ?>" disabled selected>
+           <?= $promotor[0]['Nombre'].' '.$promotor['Apellido'] ?></option>
+            <?php foreach ($promotores as $promo=> $datap): ?>
+               <option value="<?= $datap['IdPromotor'] ?>"> <?= $datap['Nombre'].' '.$datap['Apellido'] ?></option>
+            <?php endforeach; ?>
+       </select>
+       <p>
+         <label for="campo1">Nombre </label>
+         <input type="text"  name="Nombre" value="<?= $informacion[0]['Nombre']  ?>"/>
+       </p>
+
+       <p>
+         <label for="campo1">Apellido </label>
+         <input type="text"  name="Apellido" value="<?= $informacion[0]['Apellido']  ?>"/>
+       </p>
+
+       <p>
+         <label for="campo1">Identificacion </label>
+         <input type="text"  name="Identificcion" value="<?= $informacion[0]['Identificcion']  ?>"/>
+       </p>
+
+       <p>
+         <label for="campo1">Ciudad </label>
+         <input type="text"  name="Ciudad" value="<?= $informacion[0]['Ciudad']  ?>"/>
+       </p>
+
+       <p>
+         <label for="campo1">Telefono </label>
+         <input type="text"  name="Telefono" value="<?= $informacion[0]['Telefono']  ?>"/>
+       </p>
+
+       <p>
+         <label for="campo1">Correo </label>
+         <input type="text"  name="Correo" value="<?= $informacion[0]['Correo']  ?>"/>
+       </p>
+
+       <p>
+         <label for="campo1">Dirección </label>
+         <input type="text"  name="Direccion" value="<?= $informacion[0]['Direccion']  ?>"/>
+       </p>
+
+
+       <input  type="submit" value="Enviar"/>
+     </form>
+   </div>
+
+<?php
+
+   }
+   wp_die();
+
+}

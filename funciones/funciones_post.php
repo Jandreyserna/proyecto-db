@@ -16,6 +16,13 @@ function ingresar_curso(){
 
 }
 
+function ingresar_evento(){
+  unset($_POST['ingresar_evento']);
+  $modelo = new Modelo_general('lb_eventos');
+  $modelo->insertar(array_filter($_POST));
+
+}
+
 function actualizar_curso(){
 
   $modelo = new Modelo_general('lb_cursos');

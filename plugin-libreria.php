@@ -13,6 +13,7 @@ require_once dirname(__FILE__) . '/modelos/Modelo-promotor.php';
 require_once dirname(__FILE__) . '/modelos/Modelo-cursos.php';
 require_once dirname(__FILE__) . '/modelos/Modelo-libros.php';
 require_once dirname(__FILE__) . '/modelos/Modelo-profesor.php';
+require_once dirname(__FILE__) . '/modelos/Modelo-eventos.php';
 require_once dirname(__FILE__) . '/funciones/funciones_post.php';
 require_once dirname(__FILE__) . '/funciones/functions.php';
 require_once dirname(__FILE__) . '/funciones/functions_ajax.php';
@@ -21,6 +22,7 @@ add_action('init', 'lbr_init', 0);
 function lbr_init() {
   add_action('admin_menu', 'lbr_admin_estudiante');
   add_action('admin_menu', 'lbr_admin_curso');
+  add_action('admin_menu', 'lbr_admin_eventos');
 
 }
 

@@ -16,6 +16,12 @@ console.log('ready');
 		}
 	});
 
+		$('#tabla-eventos').DataTable({
+	 	language: {
+		 	url:'../wp-content/plugins/proyecto-db/js/Spanish.json'
+	 	}
+ 	});
+
 	 //--------------------------------------------//
 	 //-------BOTON DE INFO COMPLETA CON AJAX------//
 	 //--------------------------------------------//
@@ -118,5 +124,56 @@ console.log('ready');
                 }
 				    });
       });
+
+
+/////////////////////////////////////////////////////////////////
+///////////ajax de botones eventos /////////////////////////////
+///////////////////////////////////////////////////////////////
+
+$("#tabla-eventos").on("click", ".borrar-evento", function(){
+
+	 var padre = $(this).closest("tr");
+	 var id = $('.sorting_1', padre).text();
+
+	console.log(id);
+
+	jQuery.ajax({
+					type: "post",
+					url: ajax_var.url,
+
+					data: {
+							'action' : 'eventos-borrar',
+							'id'     : id
+					},
+					success: function(result){
+							console.log('Todo ok.');
+							window.location.reload(true);
+							// jQuery('.resultado-borrar').html(result);
+					}
+			});
+});
+
+$("#tabla-eventos").on("click", ".info-evento", function(){
+
+	 var padre = $(this).closest("tr");
+	 var id = $('.sorting_1', padre).text();
+
+	console.log(id);
+
+	jQuery.ajax({
+					type: "post",
+					url: ajax_var.url,
+
+					data: {
+							'action' : 'eventos-informar',
+							'id'     : id
+					},
+					success: function(result){
+							console.log('Todo ok.');
+							// window.location.reload(true);
+							 jQuery('.ajax-evento').html(result);
+					}
+			});
+});
 
 });
